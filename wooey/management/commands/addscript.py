@@ -62,7 +62,7 @@ class Command(BaseCommand):
                         local_storage = get_storage(local=True)
                         local_storage.save(os.path.join(wooey_settings.WOOEY_SCRIPT_DIR, os.path.split(script)[1]), File(f))
                 add_kwargs = {
-                    'script_path': script,
+                    'script_path': script_path,
                     'group': group,
                     'script_name': base_name,
                 }
