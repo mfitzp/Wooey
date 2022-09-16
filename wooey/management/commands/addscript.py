@@ -56,7 +56,8 @@ class Command(BaseCommand):
                 base_name = options.get('name') or os.path.splitext(os.path.split(script)[1])[0]
                 with open(script, 'rb') as f:
                     script = default_storage.save(os.path.join(wooey_settings.WOOEY_SCRIPT_DIR, os.path.split(script)[1]), File(f))
-                    if wooey_settings.WOOEY_EPHEMERAL_FILES:
+                if wooey_settings.WOOEY_EPHEMERAL_FILES:
+                    with open(script, 'rb') as f:
                         # save it locally as well (the default_storage will default to the remote store)
                         local_storage = get_storage(local=True)
                         local_storage.save(os.path.join(wooey_settings.WOOEY_SCRIPT_DIR, os.path.split(script)[1]), File(f))
