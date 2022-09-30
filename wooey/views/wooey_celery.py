@@ -152,7 +152,7 @@ def prepare_console(lines, console='stdout'):
     if lines is None:
         return None
     lines = lines.split('\n')
-    lines = [f'<span class="stdline {console} log-level-{get_log_level(line)}">{line}</span>' for line in lines]
+    lines = [f'<pre class="stdline {console} log-level-{get_log_level(line)}">{line}</pre>' for line in lines]
     return '\n'.join(lines)
 
 
