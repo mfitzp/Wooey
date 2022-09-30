@@ -249,14 +249,14 @@
                 var $console = $('.panel-body.console');
                 {% if job_info.job.status|lower == 'completed' %}
                     {% if job_info.stdout %}
-                        $console.append('<div id="console-stdout" class="console-body console-stdout">{{ job_info.stdout|linebreaks|escapejs }}</div>');
+                        $console.append('<div id="console-stdout" class="console-body console-stdout">{{ job_info.stdout|safe|linebreaks|escapejs }}</div>');
                     {% endif %}
                     {% if job_info.stderr %}
-                        $console.append('<div id="console-stderr" class="console-body console-stderr">{{ job_info.stderr|linebreaks|escapejs }}</div>');
+                        $console.append('<div id="console-stderr" class="console-body console-stderr">{{ job_info.stderr|safe|linebreaks|escapejs }}</div>');
                     {% endif %}
                 {% else %}
-                    $console.append('<div id="console-stdout" class="console-body console-stdout">{{ job_info.stdout|linebreaks|escapejs }}</div>');
-                    $console.append('<div id="console-stderr" class="console-body console-stderr">{{ job_info.stderr|linebreaks|escapejs }}</div>');
+                    $console.append('<div id="console-stdout" class="console-body console-stdout">{{ job_info.stdout|safe|linebreaks|escapejs }}</div>');
+                    $console.append('<div id="console-stderr" class="console-body console-stderr">{{ job_info.stderr|safe|linebreaks|escapejs }}</div>');
                 {% endif %}
             }
 
