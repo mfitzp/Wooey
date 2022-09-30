@@ -201,8 +201,8 @@ h5 {
     border: none;
 }
 
-.console-stdout { color: #0f0a; }
-.console-stderr { color: #fff; }
+.console-stdout { color: #0f0; }
+.console-stderr { color: #fff8; }
 .console-command { color: #fff; }
 
 
