@@ -146,7 +146,7 @@ def get_log_level(line):
     for level in ['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL']:
         if level.lower() in line.lower():
             return level.lower()
-    return ''
+    return 'none'
 
 def prepare_console(lines, console='stdout'):
     if lines is None:
@@ -261,8 +261,8 @@ class JobJSONHTML(JobBase):
         return JsonResponse({
             'status': context['job_info']['status'].lower(),
             'command': context['job_info']['job'].command,
-            'stdout': context['stdout'],
-            'stderr': context['stderr'],
+            'stdout': context['job_info']['stdout'],
+            'stderr': context['job_info']['stderr'],
             'preview_outputs_html': preview_outputs,
             'file_outputs_html': file_outputs,
         })
