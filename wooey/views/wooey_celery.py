@@ -141,9 +141,17 @@ def celery_task_command(request):
         response.update({'errors': {'__all__': [force_text(valid.get('error'))]}})
     return JsonResponse(response)
 
+
+def get_log_level(line):
+    for level in ['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL']:
+        if level.lower() in line.lower():
+            return level.lower()
+    return ''
+
 def prepare_console(lines, console='stdout'):
+
     lines = lines.split('\n')
-    lines = [f'<span class="stdline {console}">{line}</span>' for line in lines]
+    lines = [f'<span class="stdline {console} log-level-{get_log_level(line)}">{line}</span>' for line in lines]
     return '\n'.join(lines)
 
 class JobBase(DetailView):
