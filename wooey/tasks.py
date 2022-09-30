@@ -133,7 +133,10 @@ def submit_script(**kwargs):
     job.save()
 
     stdout, stderr = '', ''
-    proc = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=abscwd, bufsize=0)
+    # Add the requesting user to the env.
+    env = os.environ.copy()
+    env['WOOEY_USER'] = job.user.get_username()
+    proc = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=abscwd, bufsize=0, env=env)
 
     # We need to use subprocesses to capture the IO, otherwise they will block one another
     # i.e. a check against stderr will sit waiting on stderr before returning
