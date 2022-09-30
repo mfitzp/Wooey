@@ -201,14 +201,13 @@ h5 {
     border: none;
 }
 
-.console-stdout { color: #0f0; }
-.console-stderr { color: #f00; }
+.console-stdout { color: #fff8; }
+.console-stderr { color: #fff; }
 .console-command { color: #fff; }
 
 
 .thumbnail.panel {
     padding: 0;
-    aborder-width: 0;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.05);
 }
 
@@ -392,3 +391,8 @@ li.active > a.tab-error {
 {
     display: unset !important;
 }
+
+
+
+.log-level-error { color: #f00a;}
+.log-level-critical { color: #f00;}
