@@ -198,6 +198,8 @@ class JobBase(DetailView):
                 'status': wooey_job.status,
                 'last_modified': wooey_job.modified_date,
                 'job': wooey_job,
+                'stdout': prepare_console(wooey_job.stdout, 'stdout'),
+                'stderr': prepare_console(wooey_job.stderr, 'stderr'),
             }
 
             ctx['favorite_file_ids'] = favorite_file_ids
@@ -259,8 +261,8 @@ class JobJSONHTML(JobBase):
         return JsonResponse({
             'status': context['job_info']['status'].lower(),
             'command': context['job_info']['job'].command,
-            'stdout': prepare_console(context['job_info']['job'].get_stdout(), 'stdout'),
-            'stderr': prepare_console(context['job_info']['job'].get_stderr(), 'stderr'),
+            'stdout': context['stdout'],
+            'stderr': context['stderr'],
             'preview_outputs_html': preview_outputs,
             'file_outputs_html': file_outputs,
         })
