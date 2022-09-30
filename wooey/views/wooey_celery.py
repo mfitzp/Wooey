@@ -141,6 +141,10 @@ def celery_task_command(request):
         response.update({'errors': {'__all__': [force_text(valid.get('error'))]}})
     return JsonResponse(response)
 
+def prepare_console(lines, console='stdout'):
+    lines = lines.split('\n')
+    lines = [f'<span class="stdline {console}">{line}</span>' for line in lines]
+    return '\n'.join(lines)
 
 class JobBase(DetailView):
 
@@ -245,8 +249,8 @@ class JobJSONHTML(JobBase):
         return JsonResponse({
             'status': context['job_info']['status'].lower(),
             'command': context['job_info']['job'].command,
-            'stdout': context['job_info']['job'].get_stdout(),
-            'stderr': context['job_info']['job'].get_stderr(),
+            'stdout': prepare_console(context['job_info']['job'].get_stdout(), 'stdout'),
+            'stderr': prepare_console(context['job_info']['job'].get_stderr(), 'stderr'),
             'preview_outputs_html': preview_outputs,
             'file_outputs_html': file_outputs,
         })
