@@ -73,6 +73,7 @@ class Script(ModelDiffMixin, WooeyPy2Mixin, models.Model):
         app_label = 'wooey'
         verbose_name = _('script')
         verbose_name_plural = _('scripts')
+        ordering = ['script_order']
 
     def __str__(self):
         return self.script_name
