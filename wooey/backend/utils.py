@@ -208,6 +208,8 @@ def get_current_scripts():
         for script_version_info in script_versions.values():
             new_scripts = ScriptVersion.objects.select_related('script').filter(pk__in=[i[2].pk for i in script_version_info])
             scripts.extend([i.script for i in new_scripts])
+    # Sort scripts by sort_order field.
+    scripts.sort(key=lambda s: s.sort_order)
     return scripts
 
 
